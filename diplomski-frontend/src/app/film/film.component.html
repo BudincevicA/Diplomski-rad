@@ -1,0 +1,106 @@
+
+<div class="row" class = "img-container">
+  <img [src]="fileUrl+film?.profilePicturePath" alt="Image not found" style="width:400px;height:500px; border-style:solid;" class="left">
+        <div class="title"> Title : {{film?.title}}
+            <P></P>
+            <div class ="actor" [routerLink]="['/director', film?.director.id]" >Director : {{film?.director.firstName}} {{film?.director.lastName}}</div>
+            <p></p>
+            <div>Genres :     </div>
+            <div *ngFor="let g of film?.genres"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ g.name }}</div>
+            <p></p>
+            <div>Actors :</div>
+            <div class="actor" *ngFor="let a of film?.actors" [routerLink]="['/actor', a?.id]"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ a.firstName }}   {{a.lastName}}</div>
+        </div>
+
+      <div class="score">
+         <img [src]="'http://localhost:8080/file/images/home/userscore2.png'" alt="Image not found" style="width:200px;height:200px;" class="center">
+          <div>{{avgUserScore}}</div>
+          <p></p>
+          <ng-container *ngIf="isUser; else elseTemplate">
+            <ng-container *ngIf="userNotVoted; else elseUNV">
+              <mat-radio-group id="userScore" name="userScore" [(ngModel)]="userScore" aria-label="Select an option">
+                <mat-radio-button value="1">1</mat-radio-button>
+                <mat-radio-button value="2">2</mat-radio-button>
+                <mat-radio-button value="3">3</mat-radio-button>
+                <mat-radio-button value="4">4</mat-radio-button>
+                <mat-radio-button value="5">5</mat-radio-button>
+              </mat-radio-group>
+              <p></p>
+            <button class="button-add-score" mat-button (click)="submitUserScore(userScore)" > Submit your score <mat-icon>check_circle</mat-icon></button>
+            </ng-container>
+            <ng-template #elseUNV>
+              <div>My score : {{myUserScore}}</div>
+              <br>
+              <button class="button-remove-score" mat-button (click)="deleteUserScore()" > Remove my score <mat-icon>delete</mat-icon> </button>
+            </ng-template>
+          </ng-container>
+      </div>
+
+      <div class="score"> <img [src]="'http://localhost:8080/file/images/home/criticscore.png'" alt="Image not found" style="width:200px;height:173px;" class="left">
+        <p></p>
+        <div>{{avgCriticScore}}</div>
+        <p></p>
+        <ng-container *ngIf="isCritic; else elseTemplate">
+          <ng-container *ngIf="criticNotVoted; else elseCNV">
+            <mat-radio-group id="criticScore" name="criticScore" [(ngModel)]="criticScore" aria-label="Select an option">
+              <mat-radio-button value="1">1</mat-radio-button>
+              <mat-radio-button value="2">2</mat-radio-button>
+              <mat-radio-button value="3">3</mat-radio-button>
+              <mat-radio-button value="4">4</mat-radio-button>
+              <mat-radio-button value="5">5</mat-radio-button>
+            </mat-radio-group>
+            <p></p>
+          <button class="button-add-score" mat-button (click)="submitCriticScore(criticScore)" > Submit your score <mat-icon>check_circle</mat-icon></button>
+          </ng-container>
+          <ng-template #elseCNV>
+            <div>My score : {{myCriticScore}}</div>
+            <br>
+            <button class="button-remove-score" mat-button (click)="deleteCriticScore()" > Remove my score <mat-icon>delete</mat-icon> </button>
+          </ng-template>
+        </ng-container>
+    </div>
+
+
+
+</div>
+
+<div class="reviews">
+    <button class="button-forum" mat-button [routerLink]="['/forum', film?.forum.id]">Film forum <mat-icon>forum</mat-icon></button>
+    <ng-container *ngIf="isAdmin; else elseTemplate">
+        <button class="button-edit-film" mat-button [routerLink]="['/edit/film', film?.id]">Edit film <mat-icon>build</mat-icon></button>
+        <button class="button-delete-film" mat-raised-button color="warn" (click)="openDialogFilm(film?.id)" matTooltip="Delete" >
+          Delete film
+          <mat-icon>delete</mat-icon>
+          <!--Delete-->
+        </button>
+      </ng-container>
+      <ng-container *ngIf="isUser; else elseTemplate">
+        <ng-container *ngIf="notLiked; else elseLiked">
+        <button class="button-like-film" mat-button (click)="likeFilm(film)" > Like film <mat-icon>thumb_up</mat-icon></button>
+        </ng-container>
+        <ng-template #elseLiked>
+          <button class="button-dislike-film" mat-button (click)="deleteLike(film?.id)" > Remove from likes <mat-icon>thumb_down</mat-icon> </button>
+        </ng-template>
+      </ng-container>
+    <ng-container *ngIf="isCritic; else elseTemplate">
+          <ng-container *ngIf="notReviewd; else elseTemplate">
+        <mat-form-field class="mat-form-field-custom" appearance="fill">
+        <mat-label>Write Review :</mat-label>
+        <input matInput placeholder="..." id="reviewSubmit" name="reviewSubmit" [(ngModel)]="reviewSubmit">
+        </mat-form-field>
+        <button class="button-add-review" mat-button (click)="submitReview()" >Submit Review <mat-icon>check_circle</mat-icon></button>
+      </ng-container>
+    </ng-container>
+    <div>Critic Reviews :</div>
+    <div class = "review" *ngFor="let r of film?.reviews"> 
+        <mat-icon class ="star">star</mat-icon>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{r.accountData.username}}  :  {{ r.reviewText }}   
+        <ng-container *ngIf="r.accountData.username == myReview || isAdmin; else elseTemplate">
+          <button style="float: right;" mat-raised-button color="warn" (click)="openDialog(r.id)" matTooltip="Delete">
+            <mat-icon>delete</mat-icon>
+            <!--Delete-->
+          </button>
+      </ng-container>
+      </div>
+
+</div>

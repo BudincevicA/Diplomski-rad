@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: a
+Build-Jdk: 13.0.1
+Implementation-Title: diplomski
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: praktikum
+Implementation-URL: http://maven.apache.org
+Created-By: Maven Integration for Eclipse
+

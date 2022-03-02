@@ -1,0 +1,23 @@
+/* Customs */
+
+.account-div {
+    display: flex;
+}
+
+.account-card {
+    background-color: rgb(185, 185, 185);
+    
+}
+
+.account-form {
+    margin-top: 10px;
+}
+
+.image-preview {
+    height: 80px;
+    margin: 16px 0;
+}
+  
+.image-preview img {
+    height: 100%;
+}

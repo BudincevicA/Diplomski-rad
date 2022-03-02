@@ -1,0 +1,16 @@
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.critic-table {
+    background-color: rgb(172, 196, 206);
+}
+
+.buttonBorder {
+    border: 1px solid gray;
+}

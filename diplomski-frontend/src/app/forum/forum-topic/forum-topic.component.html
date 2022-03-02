@@ -1,0 +1,25 @@
+
+<h2>{{forumTopic?.title}} - {{forumTopic?.description}}</h2>
+
+<br>
+
+<div><ng-container *ngIf="isLogged; else elseTemplate">
+    <mat-form-field class="mat-form-field-custom" appearance="fill">
+    <mat-label>Write message :</mat-label>
+    <input matInput placeholder="..." id="newMessage" name="newMessage" [(ngModel)]="newMessage">
+    </mat-form-field>
+    <button class="button-add-message" mat-button (click)="submitMessage()" >Submit Message <mat-icon>check_circle</mat-icon></button>
+  </ng-container></div>
+
+<div class = "forumMessage" *ngFor="let m of forumMessages" > 
+    <img class ='imgs' [src]='fileUrl+m.accountData.profilePicturePath' style='width: 120px; height: 120px;float: left;'>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{m.accountData.username}}  :  {{ m.message }}  
+    <ng-container *ngIf="isAdmin; else elseTemplate">
+        <button style="float: right;" mat-raised-button color="warn" (click)="openDialog(m.id)" matTooltip="Delete">
+          <mat-icon>delete</mat-icon>
+          <!--Delete-->
+        </button>
+    </ng-container>
+    
+  </div>
+

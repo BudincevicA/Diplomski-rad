@@ -1,0 +1,64 @@
+<p></p>
+<div class ="choices">
+
+<!--<span>    <mat-form-field class ="mat-form-field-custom" appearance="fill">
+    <mat-label>Sort by :</mat-label>
+    <mat-select (selectionChange)="sortBy(sorter)"[(ngModel)]="sorter" [(value)]="sorter">
+    <mat-option value ="title">Title</mat-option>
+    <mat-option value ="id">id</mat-option>
+
+    </mat-select>
+</mat-form-field></span>-->
+
+<span>
+
+<mat-form-field class ="mat-form-field-custom" appearance="fill">
+    <mat-label>Genre :</mat-label>
+    <mat-select (selectionChange)="loadFilms($event)"[(ngModel)]="genreselect" [formControl]="genresForm" [(value)]="selected">
+    <mat-option value ="all">All</mat-option>
+    <mat-option *ngFor="let g of genres" [value]="g.name">
+        {{g.name}}
+    </mat-option>
+    </mat-select>
+</mat-form-field>
+
+</span>
+<span>
+<!--<mat-form-field class ="mat-form-field-custom" appearance="fill">
+    <mat-label>Actor :</mat-label>
+    <mat-select [formControl]="actorsForm" multiple>
+    <mat-option>Any</mat-option>
+      <mat-option *ngFor="let a of actors" [value]="a.id">
+        {{a.firstName}}  {{a.lastName}}
+      </mat-option>
+    </mat-select>
+</mat-form-field>-->
+<mat-form-field class="mat-form-field-custom" appearance="fill">
+    <mat-label>Search :</mat-label>
+    <input matInput placeholder="..." id="glumac" name="glumac" [(ngModel)]="glumac">
+    
+</mat-form-field>
+
+</span>
+<span>
+<button mat-stroked-button color="primary" (click)="searchFilm(glumac)" ><mat-icon>search</mat-icon></button>
+</span>
+<span >
+<button class="button-top-film" mat-button [routerLink]="['filmtop']" > TOP RATED FILMS <mat-icon>movie</mat-icon></button>
+</span>
+
+</div>
+
+<div *ngIf="selected">
+<div class="row" class = "img-container">
+    <div *ngFor="let f of sortBy(sorter)" class="col-md-4 img-container" [routerLink]="['film', f.id]">
+        <div class="img-with-text">
+        <img [src]="fileUrl+f.profilePicturePath" alt="Image not found" style="width:300px;height:400px; border-style:solid;"   >
+        <p>{{f.title}}</p>
+        </div>
+        
+    </div>
+</div>
+</div>
+
+

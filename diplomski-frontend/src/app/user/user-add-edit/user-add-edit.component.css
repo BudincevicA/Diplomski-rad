@@ -1,0 +1,21 @@
+.user-div {
+    display: flex;
+}
+
+.user-card {
+    background-color:   rgb(185, 185, 185);
+}
+
+.save-button {
+    margin: 20px;
+    margin-left: 150px;
+    
+}
+
+.mat-form-field {
+    width: 100%
+  }
+
+.mat-grid-list {
+    width: 100%
+  }

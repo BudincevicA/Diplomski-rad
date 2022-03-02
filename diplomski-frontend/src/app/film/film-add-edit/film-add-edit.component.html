@@ -1,0 +1,41 @@
+<form (submit)="onSave()" [formGroup]="form" method="post">
+    <div class="film-div">
+      <mat-card class="film-card">
+          <mat-card-title>Film info</mat-card-title>
+          <mat-form-field class="film-form">
+              <input matInput type="text" name="title" placeholder="Title" formControlName="title" />
+          </mat-form-field>
+          <br />
+          <mat-form-field class="mat-form-field-custom" appearance="fill">
+              <mat-label>Genre :</mat-label>
+              <mat-select  [(ngModel)]="genreselect" formControlName="genres" [(value)]="genres" multiple>
+                  <mat-option *ngFor="let z of zanrovi" [value]="z">
+                      {{z.name}}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field>
+          <br />
+          <mat-form-field class="mat-form-field-custom" appearance="fill">
+              <mat-label>Actors :</mat-label>
+              <mat-select  [(ngModel)]="actorselect" formControlName="actors" [(value)]="actors" multiple>
+                  <mat-option *ngFor="let g of glumci" [value]="g">
+                      {{g.firstName}} {{g.lastName}}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field>
+          <br />
+          <mat-form-field class="mat-form-field-custom" appearance="fill">
+              <mat-label>Director :</mat-label>
+              <mat-select  [(ngModel)]="directorselect" formControlName="director" [(value)]="director">
+                  <mat-option *ngFor="let r of reziseri" [value]="r">
+                      {{r.firstName}} {{r.lastName}}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field>
+          <br />
+          <div>Film poster :</div><br>
+          <input type="file" name="profilePicturePath" formControlName="profilePicturePath"/>
+      </mat-card>
+    </div>
+    <button class="save-button" mat-raised-button color="accent" type="submit">Save</button>
+  </form>

@@ -1,0 +1,25 @@
+
+
+<div class="row" class = "img-container">
+    <img [src]="fileUrl+actor?.profilePicturePath" alt="Image not found" style="width:300px;height:500px;border: solid;" class="left">
+          <div class="title"> {{actor?.firstName}}   {{actor?.lastName}}
+            <P></P>
+            <div>Date of birth :   {{date}} </div>
+              <P></P>
+              <div class="place" [routerLink]="['/map',actor?.placeOfBirth]" >Place of birth :   {{actor?.placeOfBirth}} </div>
+              <P></P>
+              <div>{{actor?.biography}} </div>
+              <P></P>
+          </div>
+</div>
+
+<div class="title">Films :</div>
+<br>
+<div class="row" class = "img-container-film">
+  <div *ngFor="let f of actor?.films" class="col-md-4 img-container" [routerLink]="['/film', f.id]">
+      <div class ="img-with-text">
+      <img [src]="fileUrl+f.profilePicturePath" alt="Image not found" style="width:300px;height:400px; border-style:solid;" >
+      <p>{{f.title}}</p>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+  <br><br>
+  <mat-form-field>
+    <span matSuffix>
+      <mat-icon>search</mat-icon>
+    </span>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+  </mat-form-field>
+  <div class="mat-elevation-z8">
+    <table class="userscore-table" mat-table [dataSource]="dataSource">
+  
+      <ng-container matColumnDef="no">
+        <th mat-header-cell *matHeaderCellDef style="font-weight: bold;"> No. </th>
+        <td mat-cell *matCellDef="let i = index;"> {{i+1}} </td>
+      </ng-container>
+  
+  
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef style="font-weight: bold;"> Film title </th>
+        <td mat-cell *matCellDef="let userscore"> {{userscore.film.title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="value">
+        <th mat-header-cell *matHeaderCellDef style="font-weight: bold;"> My score </th>
+        <td mat-cell *matCellDef="let userscore"> {{userscore.value}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let userscore">
+          <button mat-raised-button color="primary"
+            [routerLink]="['/film', userscore.film.id]" matTooltip="Go to film">
+            <mat-icon>movie</mat-icon>
+            <!--Edit-->
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator #paginator class="userscore-table" [pageSize] ="10"[pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>

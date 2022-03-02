@@ -1,0 +1,50 @@
+h1 {
+    margin-top:40px;
+    text-align:center;
+}
+
+table {
+    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sve{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    
+    
+}
+
+.search{
+    text-align: center;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 20%;
+    font-weight: bold;
+    margin-left: 50px;
+}
+
+
+
+.forum-table {
+    background-color: rgb(191, 230, 247);
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+
+}
+
+.buttonBorder {
+    
+    background-color: rgb(24, 146, 0);
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+    border-style: solid;
+    margin:auto
+}

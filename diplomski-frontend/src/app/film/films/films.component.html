@@ -1,0 +1,46 @@
+<button class="buttonBorder" mat-button routerLink="/register/film" matTooltip="Add new film">
+    <mat-icon>add</mat-icon>
+  </button>
+  <br><br>
+  <mat-form-field>
+    <span matSuffix>
+      <mat-icon>search</mat-icon>
+    </span>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+  </mat-form-field>
+  <div class="mat-elevation-z8">
+    <table class="film-table" mat-table [dataSource]="dataSource">
+  
+      <ng-container matColumnDef="no">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let i = index;"> {{i+1}} </td>
+      </ng-container>
+  
+  
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let film"> {{film.title}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let film">
+          <button mat-raised-button color="warn" (click)="openDialog(film.id)" matTooltip="Delete">
+            <mat-icon>delete</mat-icon>
+            <!--Delete-->
+          </button>
+          <button mat-raised-button color="accent"
+            [routerLink]="['/edit/film', film.id]" matTooltip="Edit">
+            <mat-icon>edit</mat-icon>
+            <!--Edit-->
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator #paginator class="film-table" [pageSize] ="10"[pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>

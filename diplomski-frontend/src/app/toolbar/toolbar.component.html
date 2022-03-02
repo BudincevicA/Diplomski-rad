@@ -1,0 +1,27 @@
+<mat-toolbar class="main-toolbar">
+
+  <button mat-button class="home-buttn" routerLink="/">
+    <mat-icon>home</mat-icon>
+    {{"Home"}}
+  </button>
+
+  <span class="fill-remaining-space"></span>
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm class="full-height">
+
+    <ng-container *ngIf="isLoggedIn">
+      <button mat-button [routerLink]="['edit/'+loggedUserType, loggedUserUsername]" routerLinkActive="active-item">Profile</button>
+    </ng-container>
+
+
+    <ng-container *ngIf="isLoggedIn; else elseTemplate">
+      <button mat-button (click)="onLogout()">Logout</button>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <button mat-button routerLink="register/user">Register</button>
+      <button mat-button routerLink="login">Login</button>
+    </ng-template>
+
+
+  </div>
+
+</mat-toolbar>

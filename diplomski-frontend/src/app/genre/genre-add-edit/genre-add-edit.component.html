@@ -1,0 +1,15 @@
+<form (submit)="onSave()" [formGroup]="form" method="post">
+    <div class ="genre-div">
+      
+        <mat-card class="genre-card">
+          <mat-card-title>Genre info</mat-card-title>
+          <mat-form-field>
+            <input matInput name="name" type="text" placeholder="Name" formControlName="name">
+          </mat-form-field><br>
+          <mat-form-field>
+            <input matInput name="description" type="text" placeholder="Description" formControlName="description">
+          </mat-form-field><br>
+        </mat-card>
+    </div>
+    <button class = "save-button" mat-raised-button color="accent" type="submit">Save</button>
+  </form>

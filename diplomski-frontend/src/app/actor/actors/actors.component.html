@@ -1,0 +1,49 @@
+<button class="buttonBorder" mat-button routerLink="/register/actor" matTooltip="Add new actor">
+    <mat-icon>add</mat-icon>
+  </button>
+  <br><br>
+  <mat-form-field>
+    <span matSuffix>
+      <mat-icon>search</mat-icon>
+    </span>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+  </mat-form-field>
+  <div class="mat-elevation-z8">
+    <table class="actor-table" mat-table [dataSource]="dataSource">
+  
+      <ng-container matColumnDef="no">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let i = index;"> {{i+1}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef> First Name </th>
+        <td mat-cell *matCellDef="let actor"> {{actor.firstName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef> Last Name </th>
+        <td mat-cell *matCellDef="let actor"> {{actor.lastName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let actor">
+          <button mat-raised-button color="warn" (click)="openDialog(actor.id)" matTooltip="Delete">
+            <mat-icon>delete</mat-icon>
+            <!--Delete-->
+          </button>
+          <button mat-raised-button color="accent"
+            [routerLink]="['/edit/actor', actor.id]" matTooltip="Edit">
+            <mat-icon>edit</mat-icon>
+            <!--Edit-->
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator #paginator class="actor-table" [pageSize] ="10"[pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>

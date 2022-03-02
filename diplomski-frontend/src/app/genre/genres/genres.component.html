@@ -1,0 +1,49 @@
+<button class="buttonBorder" mat-button routerLink="/register/genre" matTooltip="Add new genre">
+    <mat-icon>add</mat-icon>
+  </button>
+  <br><br>
+  <mat-form-field>
+    <span matSuffix>
+      <mat-icon>search</mat-icon>
+    </span>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+  </mat-form-field>
+  <div class="mat-elevation-z8">
+    <table class="genre-table" mat-table [dataSource]="dataSource">
+  
+      <ng-container matColumnDef="no">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let i = index;"> {{i+1}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let genre"> {{genre.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let genre"> {{genre.description}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let genre">
+          <button mat-raised-button color="warn" (click)="openDialog(genre.id)" matTooltip="Delete">
+            <mat-icon>delete</mat-icon>
+            <!--Delete-->
+          </button>
+          <button mat-raised-button color="accent"
+            [routerLink]="['/edit/genre', genre.id]" matTooltip="Edit">
+            <mat-icon>edit</mat-icon>
+            <!--Edit-->
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator #paginator class="genre-table" [pageSize] ="10"[pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>

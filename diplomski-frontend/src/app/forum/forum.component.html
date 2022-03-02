@@ -1,0 +1,58 @@
+<h1>{{film?.title}}</h1>
+
+<h1>{{message}}</h1>
+
+<div class="search">
+  <ng-container *ngIf="isLogged; else elseTemplate">
+<button class="buttonBorder" [routerLink]="['/register/forumtopic', forum?.id]" mat-button  matTooltip="Start new topic">
+    Start new topic
+    <mat-icon>add_circle</mat-icon>
+  </button>
+
+  <mat-form-field>
+    <span matSuffix>
+      <mat-icon>search</mat-icon>
+    </span>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+  </mat-form-field>
+</ng-container>
+</div>
+  <div class='sve'>
+    <table class="forum-table" mat-table [dataSource]="dataSource">
+  
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let forumTopic"> {{forumTopic.title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let forumTopic"> {{forumTopic.description}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let forumTopic">
+          <ng-container *ngIf="isAdmin; else elseTemplate">
+          <button style="margin-right: 20px;" mat-raised-button color="warn" (click)="openDialog(forumTopic.id)" matTooltip="Delete">
+            <mat-icon>delete</mat-icon>
+            <!--Delete-->
+          </button>
+        </ng-container>
+          <button mat-raised-button color="accent" [routerLink]="['/forumtopic',forumTopic?.id]"
+             matTooltip="View topic">
+            <mat-icon>chrome_reader_mode</mat-icon>
+            <!--Edit-->
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator class="forum-table" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
+
+

@@ -1,0 +1,12 @@
+.actor-div {
+    display: flex;
+}
+
+.actor-card {
+    background-color:   rgb(185, 185, 185);
+}
+
+.save-button {
+    margin: 20px;
+    margin-left: auto;
+}

@@ -1,0 +1,17 @@
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.review-table {
+    background-color: rgb(172, 196, 206);
+    font-weight: bold;
+}
+
+.buttonBorder {
+    border: 1px solid gray;
+}

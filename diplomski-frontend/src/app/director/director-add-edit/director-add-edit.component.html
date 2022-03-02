@@ -1,0 +1,29 @@
+<form (submit)="onSave()" [formGroup]="form" method="post">
+    <div class ="director-div">
+      
+        <mat-card class="director-card">
+          <mat-card-title>Director info</mat-card-title>
+          <mat-form-field>
+            <input matInput name="firstName" type="text" placeholder="First Name" formControlName="firstName">
+          </mat-form-field><br>
+          <mat-form-field>
+            <input matInput name="lastName" type="text" placeholder="Last Name" formControlName="lastName">
+          </mat-form-field><br>
+        <mat-form-field>
+          <input matInput name="biography" type="text" placeholder="Biography" formControlName="biography">
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+          <mat-label>Date of birth</mat-label>
+          <input matInput [matDatepicker]="picker" name="dateOfBirth" placeholder="Date Of Birth" formControlName="dateOfBirth">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput name="placeOfBirth" type="text" placeholder="Place Of Birth" formControlName="placeOfBirth">
+        </mat-form-field><br>
+        <div>Director picture :</div><br>
+        <input type="file" name="profilePicturePath" formControlName="profilePicturePath"/>
+      </mat-card>
+    </div>
+    <button class = "save-button" mat-raised-button color="accent" type="submit">Save</button>
+  </form>

@@ -1,0 +1,20 @@
+<app-toolbar></app-toolbar>
+
+
+<mat-drawer-container class="main-container" autosize>
+    <mat-drawer  style="background-color: rgba(233, 233, 233, 0.527);"  #drawer class="main-sidenav" mode="side" [(opened)]="opened" opened="true">
+        <app-admin-sidenav *ngIf="(roles.indexOf('ROLE_ADMINISTRATOR') >= 0)"></app-admin-sidenav>
+        <app-user-sidenav  *ngIf="(roles.indexOf('ROLE_USER') >= 0)"></app-user-sidenav>
+        <app-critic-sidenav *ngIf="(roles.indexOf('ROLE_CRITIC') >= 0)"></app-critic-sidenav>
+    </mat-drawer>
+
+    <button type="button" mat-button (click)="drawer.toggle()"
+        *ngIf="(roles.indexOf('ROLE_ADMINISTRATOR') >= 0) || (roles.indexOf('ROLE_USER') >= 0) || (roles.indexOf('ROLE_CRITIC') >= 0)">
+        <mat-icon *ngIf="opened">arrow_back_ios</mat-icon>
+        <mat-icon *ngIf="!opened">arrow_forward_ios</mat-icon>
+    </button>
+    <div class="main-sidenav-content">
+        <router-outlet></router-outlet>
+        <!--<router-outlet name="adminSidenav"></router-outlet>-->
+    </div>
+</mat-drawer-container>

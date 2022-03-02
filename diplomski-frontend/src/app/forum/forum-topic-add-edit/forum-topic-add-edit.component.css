@@ -1,0 +1,13 @@
+.forumtopic-div {
+    display: flex;
+}
+
+.forumtopic-card {
+    background-color:   rgb(185, 185, 185);
+}
+
+.save-button {
+    margin: 20px;
+    margin-left: auto;
+}
+

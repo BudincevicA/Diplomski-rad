@@ -1,0 +1,40 @@
+<button class="full-width" mat-button [matMenuTriggerFor]="addMenu">Add</button>
+<br>
+<mat-menu #addMenu="matMenu">
+  <!--<button mat-menu-item [routerLink]="[{ outlets: { adminSidenav: ['students'] } }]">Students</button>-->
+  
+  <button mat-menu-item [matMenuTriggerFor]="addUsersMenu">Users</button>
+  <mat-menu #addUsersMenu="matMenu">
+    <button mat-menu-item routerLink="register/administrator">Administrator</button>
+    <button mat-menu-item routerLink="register/critic">Critic</button>
+  </mat-menu>
+
+  <button mat-menu-item [matMenuTriggerFor]="addDataMenu">Data</button>
+  <mat-menu #addDataMenu="matMenu">
+    <button mat-menu-item routerLink="register/film">Film</button>
+    <button mat-menu-item routerLink="register/actor">Actor</button>
+    <button mat-menu-item routerLink="register/genre">Genre</button>
+    <button mat-menu-item routerLink="register/director">Director</button>
+  </mat-menu>
+</mat-menu>
+<button class="full-width" mat-button [matMenuTriggerFor]="searchMenu">Search, Edit and Delete</button>
+<br>
+<mat-menu #searchMenu="matMenu">
+  <!--<button mat-menu-item [routerLink]="[{ outlets: { adminSidenav: ['students'] } }]">Students</button>-->
+  
+  <button mat-menu-item [matMenuTriggerFor]="searchUsersMenu">Users</button>
+  <mat-menu #searchUsersMenu="matMenu">
+    <button mat-menu-item routerLink="administrators">Administrators</button>
+    <button mat-menu-item routerLink="critics">Critics</button>
+    <button mat-menu-item routerLink="users">Regular Users</button>
+  </mat-menu>
+
+  <button mat-menu-item [matMenuTriggerFor]="searchDataMenu">Data</button>
+  <mat-menu #searchDataMenu="matMenu">
+    <button mat-menu-item routerLink="films">Films</button>
+    <button mat-menu-item routerLink="actors">Actors</button>
+    <button mat-menu-item routerLink="genres">Genres</button>
+    <button mat-menu-item routerLink="directors">Directors</button>
+  </mat-menu>
+</mat-menu>
+<button class="full-width" mat-button routerLink="chat" routerLinkActive="active-item">User messages</button>
